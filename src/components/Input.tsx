@@ -3,30 +3,42 @@ interface InputTagProps {
     width?: string
     value: string
     name: string
-    error: string
+    label: string
+    error?: string
     placeholder: string
+    required?: boolean
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
-function Input({ value, onChange, name, error, width = '513px' }: InputTagProps) {
+function Input({
+    value,
+    onChange,
+    name,
+    label,
+    error = '',
+    width = '513px',
+    required = false,
+    placeholder
+}: InputTagProps) {
     return (
-        <div style={{width}}>
+        <div style={{ width }}>
             <label
-                htmlFor={name}
+                htmlFor={label}
                 className="text-sm font-medium block"
             >
-                {name}<span className="text-error">*</span>
+                {label}{required ? <span className="text-error">*</span> : null}
             </label>
             <input
                 type="text"
-                id={name}
+                id={label}
+                name={name}
                 value={value}
                 onChange={onChange}
-                placeholder='ex. UX UI Designer'
-                className={`h-[36px] px-3 py-2 border-2 border-card-border rounded-md appearance-none focus:outline-none ${error ? "border-red-500" : ""
+                placeholder={placeholder}
+                className={`h-[36px] px-3 py-2 border-2 border-card-border rounded-md appearance-none focus:outline-none ${error && required ? "border-error" : ""
                     }`}
-                style={{width}}
+                style={{ width }}
             />
-            {error && (
+            {error && required && (
                 <span className="text-error text-sm">{error}</span>
             )}
         </div>

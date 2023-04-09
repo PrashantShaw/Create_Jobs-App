@@ -6,13 +6,19 @@ export interface TypeJob {
     location: string,
     'remote-type': string,
     experience: {
-        min: number,
-        max: number,
+        min: string,
+        max: string,
     },
     salary: {
-        min: number,
-        max: number,
+        min: string,
+        max: string,
     },
     'total-emp': string,
     'apply-type': string,
+}
+
+export interface FormErrors {
+    'job-title': string,
+    company: string,
+    industry: string,
 }
