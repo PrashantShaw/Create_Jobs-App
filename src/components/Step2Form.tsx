@@ -14,7 +14,6 @@ function Step2Form({
     handleSubmit,
     jobObj
 }: Step1FormProps) {
-    console.log('from step 2 form :::', jobObj)
     return (
         <div
             onClick={(e) => e.stopPropagation()}
@@ -111,8 +110,6 @@ function Step2Form({
                         fontWeight='medium'
                         height='40px'
                         width='68px'
-                        textColor='font-white'
-                        bgColor='primary'
                         text='Save'
                         onClick={() => { }}
                     />

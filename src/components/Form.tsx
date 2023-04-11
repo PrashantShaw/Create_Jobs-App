@@ -1,6 +1,5 @@
 import React, { SetStateAction, useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
-import Input from "./Input";
 import Button from "./Button";
 import { FormErrors, TypeCreateJobResponse, TypeJob } from "../utils/types";
 import { emptyJobsObject, emptyErrorObject } from "../utils/variables";
@@ -8,6 +7,8 @@ import Step1Form from "./Step1Form";
 import Step2Form from "./Step2Form";
 import { createJob, editJob } from "../utils/apis";
 import { CREATE_ERROR_MESSAGE, EDIT_ERROR_MESSAGE } from "../utils/constants";
+import { Transition } from '@headlessui/react'
+
 
 interface FormComponentProps {
     setJobsArr: React.Dispatch<SetStateAction<TypeJob[] | null>>
@@ -64,7 +65,6 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
         return { ...emptyJobsObject, experience: { min: '', max: '' }, salary: { min: '', max: '' } }
     }
     const handleEditSuccess = (res: TypeCreateJobResponse) => {
-        console.log('edited :::', res)
         setJobsArr(allJobs => {
             const updatedList = allJobs?.map(job => {
                 if (job.id === res.data.id) {
@@ -82,7 +82,6 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
         setJobObj(resetJobObj())
         setErrors(emptyErrorObject);
     }
-    console.log('++++++++++++++++', jobObj)
     const handleSubmitStep1 = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -123,7 +122,6 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
         createJob(jobObj)
             .then(res => {
                 if (res.status === 201) {
-                    console.log('created job result', res)
                     setJobsArr(rest => [...(rest as TypeJob[]), res.data])
                     setShowStep2(false)
                     setShowPopup(false)
@@ -181,8 +179,6 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
                     fontWeight='medium'
                     height='40px'
                     width='147px'
-                    textColor='font-white'
-                    bgColor='primary'
                     text='Create Job'
                     onClick={() => {
                         setJobObj(resetJobObj())
@@ -192,8 +188,8 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
                     }}
                 />
             </div>
-            {showPopup && (<>
-                <div
+            {(<>
+                <Transition
                     onClick={() => {
                         setShowPopup(false)
                         setShowStep1(false)
@@ -204,6 +200,14 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
                     }}
                     className="fixed inset-0 z-50 flex items-center justify-center"
                     style={{ backgroundColor: "rgba(205, 205, 205, 0.5)" }}
+                    // transition
+                    show={showPopup}
+                    enter="transition-opacity ease-in-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="transition-opacity ease-in-out duration-500"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
                 >
                     {showStep1 &&
                         <Step1Form
@@ -221,7 +225,7 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
                             errors={errors}
                         />}
 
-                </div>
+                </Transition>
             </>
             )}
         </div>

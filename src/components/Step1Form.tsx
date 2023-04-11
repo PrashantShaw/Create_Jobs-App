@@ -87,8 +87,6 @@ function Step1Form({
                         fontWeight='medium'
                         height='40px'
                         width='68px'
-                        textColor='font-white'
-                        bgColor='primary'
                         text='Next'
                         onClick={() => { }}
                     />

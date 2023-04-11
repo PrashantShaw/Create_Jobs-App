@@ -14,7 +14,6 @@ const Home = () => {
         deleteJob(jobId)
             .then(res => {
                 if (res.status === 200) {
-                    console.log('delete job zzzzzzzzz', res)
                     const updatedList = data?.filter(job => job.id !== res.data.id) as TypeJob[]
                     setData(updatedList)
                     document.body.style.cursor = "default"

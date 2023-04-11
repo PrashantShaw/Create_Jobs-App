@@ -62,8 +62,7 @@ const Card = ({ job, setjobToEdit, handleDeleteJob }: CardComponentProps) => {
                             fontWeight='medium'
                             height='40px'
                             width='118px'
-                            textColor='font-white'
-                            bgColor='primary'
+                            border = 'primary'
                             text='Apply Now'
                             onClick={() => { }}
                         />

@@ -5,28 +5,31 @@ interface ButtonProps {
     fontWeight?: string
     height: string,
     width: string,
-    textColor: string,
-    bgColor: string,
+    textColor?: string,
+    bgColor?: string,
     border?: string,
     text: string,
     onClick: () => unknown
 }
 function Button({
     id = 'btn',
-    textColor = 'font-white',
-    bgColor = 'primary',
-    border = bgColor,
-    text = 'font-white',
+    textColor,
+    bgColor,
+    border = 'primary',
+    text,
     width = '118px',
     height = '40px',
     fontSize = 'base',
     fontWeight = 'medium',
     onClick
 }: ButtonProps) {
+    const backgroundColor = bgColor ? 'bg-' + bgColor : 'bg-primary'
+    const color = textColor ? 'text-' + textColor : 'text-font-white'
+    const hoverColor = bgColor ? 'hover:bg-[#F5F5F5]' : 'hover:bg-[#1d6ef0]'
     return (
         <button
             id={id}
-            className={`bg-${bgColor} text-${textColor} text-${fontSize} font-${fontWeight} rounded-md shadow-sm border-[1px] border-${border} hover:bg-[${bgColor === 'primary' ? '#1d6ef0' : '#F5F5F5'}]`}
+            className={`${backgroundColor} ${color} text-${fontSize} font-${fontWeight} rounded-md shadow-sm border-[1px] border-${border} ${hoverColor}`}
             style={{ width, height }}
             onClick={onClick}
         >

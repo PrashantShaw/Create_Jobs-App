@@ -12,7 +12,8 @@ module.exports = {
       'font-white': '#FAFAFA',
       'error': '#D86161',
       'placeholder': '#7A7A7A',
-      'primary': '#1597E4'
+      'primary': '#1597E4',
+      'prime': '#1597E4'
     }
   },
   plugins: [],
