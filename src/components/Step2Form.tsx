@@ -14,6 +14,7 @@ function Step2Form({
     handleSubmit,
     jobObj
 }: Step1FormProps) {
+    console.log('from step 2 form :::', jobObj)
     return (
         <div
             onClick={(e) => e.stopPropagation()}
@@ -28,6 +29,8 @@ function Step2Form({
 
                 <Input
                     width="242.5px"
+                    fontSize='sm'
+                    fontWeight='medium'
                     value={jobObj.experience.min}
                     name='experience-min'
                     label="Experience"
@@ -36,6 +39,8 @@ function Step2Form({
                 />
                 <Input
                     width="242.5px"
+                    fontSize='sm'
+                    fontWeight='medium'
                     value={jobObj.experience.max}
                     name="experience-max"
                     label=""
@@ -44,6 +49,8 @@ function Step2Form({
                 />
                 <Input
                     width="242.5px"
+                    fontSize='sm'
+                    fontWeight='medium'
                     value={jobObj.salary.min}
                     name='salary-min'
                     label="Salary"
@@ -52,6 +59,8 @@ function Step2Form({
                 />
                 <Input
                     width="242.5px"
+                    fontSize='sm'
+                    fontWeight='medium'
                     value={jobObj.salary.max}
                     name="salary-max"
                     label=""
@@ -59,6 +68,8 @@ function Step2Form({
                     onChange={onChangeHandler}
                 />
                 <Input
+                    fontSize='sm'
+                    fontWeight='medium'
                     value={jobObj['total-emp']}
                     label="Total employee"
                     name="total-emp"
@@ -95,6 +106,9 @@ function Step2Form({
 
                 <div className="absolute right-8 bottom-8">
                     <Button
+                        id='save-btn'
+                        fontSize='base'
+                        fontWeight='medium'
                         height='40px'
                         width='68px'
                         textColor='font-white'

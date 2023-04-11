@@ -60,6 +60,9 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
 
         return true
     }
+    const resetJobObj = (): TypeJob => {
+        return { ...emptyJobsObject, experience: { min: '', max: '' }, salary: { min: '', max: '' } }
+    }
     const handleEditSuccess = (res: TypeCreateJobResponse) => {
         console.log('edited :::', res)
         setJobsArr(allJobs => {
@@ -76,10 +79,10 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
         setShowStep1(false)
         setShowStep2(false)
         setjobToEdit(null)
-        setJobObj(emptyJobsObject)
+        setJobObj(resetJobObj())
         setErrors(emptyErrorObject);
     }
-    // console.log('++++++++++++++++', jobObj)
+    console.log('++++++++++++++++', jobObj)
     const handleSubmitStep1 = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -96,22 +99,23 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
         const success = formValidation()
         if (!success) return
 
-        document.body.style.cursor = "wait"
+        const saveBtn = document.getElementById('save-btn')
+        saveBtn && (saveBtn.style.cursor = "wait")
 
         if (isEditing) {
             editJob(jobObj)
                 .then(res => {
                     if (res.status === 200) {
                         handleEditSuccess(res)
-                        document.body.style.cursor = "default"
+                        saveBtn && (saveBtn.style.cursor = "default")
                     }
                     else {
-                        document.body.style.cursor = "default"
+                        saveBtn && (saveBtn.style.cursor = "default")
                         alert(EDIT_ERROR_MESSAGE)
                     }
                 })
                 .catch(err => {
-                    document.body.style.cursor = "default"
+                    saveBtn && (saveBtn.style.cursor = "default")
                     throw new Error(EDIT_ERROR_MESSAGE, err)
                 })
             return
@@ -119,21 +123,21 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
         createJob(jobObj)
             .then(res => {
                 if (res.status === 201) {
-                    // console.log('created job result', res)
+                    console.log('created job result', res)
                     setJobsArr(rest => [...(rest as TypeJob[]), res.data])
                     setShowStep2(false)
                     setShowPopup(false)
-                    setJobObj(emptyJobsObject)
+                    setJobObj(resetJobObj())
                     setErrors(emptyErrorObject);
-                    document.body.style.cursor = "default"
+                    saveBtn && (saveBtn.style.cursor = "default")
                 }
                 else {
-                    document.body.style.cursor = "default"
+                    saveBtn && (saveBtn.style.cursor = "default")
                     alert(CREATE_ERROR_MESSAGE)
                 }
             })
             .catch(err => {
-                document.body.style.cursor = "default"
+                saveBtn && (saveBtn.style.cursor = "default")
                 throw new Error(CREATE_ERROR_MESSAGE, err)
             })
     };
@@ -173,13 +177,15 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
             {/* <button className="ml-6 my-6 " onClick={() => setShowPopup(true)}>Create Job</button> */}
             <div className="ml-6 my-6">
                 <Button
+                    fontSize='base'
+                    fontWeight='medium'
                     height='40px'
                     width='147px'
                     textColor='font-white'
                     bgColor='primary'
                     text='Create Job'
                     onClick={() => {
-                        setJobObj(emptyJobsObject)
+                        setJobObj(resetJobObj())
                         setShowPopup(true)
                         setShowStep1(true)
                         setShowStep2(false)
@@ -193,7 +199,7 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
                         setShowStep1(false)
                         setShowStep2(false)
                         isEditing && setIsEditing(false)
-                        setJobObj(emptyJobsObject)
+                        setJobObj(resetJobObj())
                         setErrors(emptyErrorObject)
                     }}
                     className="fixed inset-0 z-50 flex items-center justify-center"

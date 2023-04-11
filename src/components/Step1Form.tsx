@@ -28,6 +28,8 @@ function Step1Form({
             <form onSubmit={handleSubmit} className="flex flex-row flex-wrap gap-6">
 
                 <Input
+                    fontSize='sm'
+                    fontWeight='medium'
                     value={jobObj['job-title']}
                     name='job-title'
                     label="Job title"
@@ -37,6 +39,8 @@ function Step1Form({
                     onChange={onChangeHandler}
                 />
                 <Input
+                    fontSize='sm'
+                    fontWeight='medium'
                     value={jobObj.company}
                     label="Company name"
                     name="company"
@@ -46,6 +50,8 @@ function Step1Form({
                     onChange={onChangeHandler}
                 />
                 <Input
+                    fontSize='sm'
+                    fontWeight='medium'
                     value={jobObj.industry}
                     label="Industry"
                     name="industry"
@@ -55,6 +61,8 @@ function Step1Form({
                     onChange={onChangeHandler}
                 />
                 <Input
+                    fontSize='sm'
+                    fontWeight='medium'
                     width="242.5px"
                     value={jobObj.location}
                     label="Location"
@@ -63,6 +71,8 @@ function Step1Form({
                     onChange={onChangeHandler}
                 />
                 <Input
+                    fontSize='sm'
+                    fontWeight='medium'
                     width="242.5px"
                     value={jobObj["remote-type"]}
                     label="Remote type"
@@ -73,6 +83,8 @@ function Step1Form({
 
                 <div className="absolute right-8 bottom-8">
                     <Button
+                        fontSize='base'
+                        fontWeight='medium'
                         height='40px'
                         width='68px'
                         textColor='font-white'

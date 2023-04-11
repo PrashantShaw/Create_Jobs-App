@@ -1,6 +1,8 @@
 import React from 'react'
 interface InputTagProps {
     width?: string
+    fontSize?: string
+    fontWeight?: string
     value: string
     name: string
     label: string
@@ -16,6 +18,8 @@ function Input({
     label,
     error = '',
     width = '513px',
+    fontSize = 'sm',
+    fontWeight = 'medium',
     required = false,
     placeholder
 }: InputTagProps) {
@@ -23,9 +27,9 @@ function Input({
         <div style={{ width }}>
             <label
                 htmlFor={label}
-                className="text-sm font-medium block mb-1"
+                className={`text-${fontSize} font-${fontWeight} block mb-1`}
             >
-                {label || <span style={{visibility: 'hidden'}}>label</span>}{required ? <span className="text-error">*</span> : null}
+                {label || <span style={{ visibility: 'hidden' }}>label</span>}{required ? <span className="text-error">*</span> : null}
             </label>
             <input
                 type="text"
@@ -34,7 +38,7 @@ function Input({
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
-                className={`h-[36px] px-3 py-2 text-sm border-2 border-card-border rounded-md appearance-none focus:outline-none ${error && required ? "border-error" : ""
+                className={`h-[36px] px-3 py-2 text-${fontSize} border-2 border-card-border rounded-md appearance-none focus:outline-none ${error && required ? "border-error" : ""
                     }`}
                 style={{ width }}
             />

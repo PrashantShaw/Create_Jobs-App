@@ -58,6 +58,8 @@ const Card = ({ job, setjobToEdit, handleDeleteJob }: CardComponentProps) => {
                 <div className="buttons">
                     {job['apply-type'] === 'Quick apply' ?
                         <Button
+                            fontSize='base'
+                            fontWeight='medium'
                             height='40px'
                             width='118px'
                             textColor='font-white'
@@ -67,6 +69,8 @@ const Card = ({ job, setjobToEdit, handleDeleteJob }: CardComponentProps) => {
                         />
                         :
                         <Button
+                            fontSize='base'
+                            fontWeight='medium'
                             height='40px'
                             width='147px'
                             textColor='primary'
