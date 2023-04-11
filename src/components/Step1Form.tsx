@@ -18,7 +18,7 @@ function Step1Form({
     return (
         <div
             onClick={(e) => e.stopPropagation()}
-            className="relative bg-white rounded-lg p-8 border-2 border-card-border"
+            className="relative bg-white rounded-lg p-8 border-2 border-card-border shadow-md"
             style={{ width: "577px", height: "564px", backgroundColor: "#fff" }}
         >
             <div className="form-step-1 flex justify-between items-center mb-6">

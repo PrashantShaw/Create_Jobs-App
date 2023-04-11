@@ -22,3 +22,8 @@ export interface FormErrors {
     company: string,
     industry: string,
 }
+
+export interface TypeCreateJobResponse {
+    status: number,
+    data: TypeJob
+}

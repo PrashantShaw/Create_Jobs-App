@@ -7,7 +7,7 @@ export const useGetAllJobs = () => {
     const [data, setData] = useState<TypeJob[] | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    const [refetchCount, setReftchCount] = useState(0)
+    // const [refetchCount, setReftchCount] = useState(0)
 
     useEffect(() => {
         axios({
@@ -29,7 +29,7 @@ export const useGetAllJobs = () => {
                 setError(err.message)
                 setData(null)
             })
-    }, [refetchCount])
+    }, [])
 
-    return { data, loading, error, refetch: () => setReftchCount(c => c + 1) }
+    return { data, loading, error, setData }
 }
