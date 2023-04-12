@@ -194,7 +194,8 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
                         setShowPopup(false)
                         setShowStep1(false)
                         setShowStep2(false)
-                        isEditing && setIsEditing(false)
+                        setjobToEdit(null)
+                        setIsEditing(false)
                         setJobObj(resetJobObj())
                         setErrors(emptyErrorObject)
                     }}
