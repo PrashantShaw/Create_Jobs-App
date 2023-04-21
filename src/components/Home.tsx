@@ -5,6 +5,7 @@ import Form from './Form'
 import { TypeJob } from '../utils/types'
 import { deleteJob } from '../utils/apis'
 import { DELETE_ERROR_MESSAGE } from '../utils/constants'
+import Footer from './Footer'
 
 const Home = () => {
     const { data, loading, error, setData } = useGetAllJobs()
@@ -36,7 +37,7 @@ const Home = () => {
             jobToEdit={jobToEdit}
             setjobToEdit={setjobToEdit}
         />
-        <div className='flex flex-row flex-wrap justify-center items-center gap-8'>
+        <div className='flex flex-row flex-wrap justify-center items-center gap-8 min-h-[585px]'>
             {data?.map(job => {
                 const randomKey = (Math.random() * 1000).toString(24)
                 return <Card
@@ -47,6 +48,7 @@ const Home = () => {
                 />
             })}
         </div>
+        {<Footer />}
     </>
 
 }

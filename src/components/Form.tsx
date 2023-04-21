@@ -6,7 +6,7 @@ import { emptyJobsObject, emptyErrorObject } from "../utils/variables";
 import Step1Form from "./Step1Form";
 import Step2Form from "./Step2Form";
 import { createJob, editJob } from "../utils/apis";
-import { CREATE_ERROR_MESSAGE, EDIT_ERROR_MESSAGE } from "../utils/constants";
+import { CREATE_ERROR_MESSAGE, EDIT_ERROR_MESSAGE, REQUIRED_ERROR_MESSAGE } from "../utils/constants";
 import { Transition } from '@headlessui/react'
 
 
@@ -43,15 +43,15 @@ function Form({ setJobsArr, jobToEdit, setjobToEdit }: FormComponentProps) {
         };
 
         if (!jobObj["job-title"]) {
-            errors["job-title"] = "This is a required field";
+            errors["job-title"] = REQUIRED_ERROR_MESSAGE;
         }
 
         if (!jobObj.company) {
-            errors.company = "This is a required field";
+            errors.company = REQUIRED_ERROR_MESSAGE;
         }
 
         if (!jobObj.industry) {
-            errors.industry = "This is a required field";
+            errors.industry = REQUIRED_ERROR_MESSAGE;
         }
 
         if (Object.values(errors).join('')) {
